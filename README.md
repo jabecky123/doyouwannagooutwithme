@@ -1,5 +1,5 @@
 ✨[doyouwannagooutwithme.com](http://doyouwannagooutwithme.com) 
 
-[inviteforbrysoohoo.lol](https://inviteforbrysoohoo.lol/)
+(benoppasohawt.live)
 
 A website to invite your crush for a date 🥰

@@ -8,9 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <div>
-        <h1 class="header_text">Dear Ben Oppa，do you wanna grab sushi with me?</h1>
-      </div>
+      <h1 class="header_text">Dear Ben Oppa，do you wanna grab sushi with me?</h1>
 
       <div class="gif_container" aria-hidden="true">
         <img
@@ -19,51 +17,7 @@
         />
       </div>
 
-      <!-- 🍣 Place card -->
-      <div class="place-card" role="group" aria-label="Restaurant details">
-        <div class="place-card__title">Bleu Bear Sushi</div>
-        <div class="place-card__addr">2807 Central Dr, Bedford, TX 76021</div>
-
-        <div class="place-card__actions">
-          <a
-            class="btn btn--primary"
-            href="https://www.google.com/maps/search/?api=1&query=Bleu+Bear+Sushi+2807+Central+Dr,+Bedford,+TX+76021"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Open in Maps</a
-          >
-          <a
-            class="btn btn--ghost"
-            href="https://bleubearsushi.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Website</a
-          >
-          <button class="btn btn--secondary" id="openCal">Add to Calendar</button>
-        </div>
-
-        <!-- Simple calendar planner -->
-        <div id="calForm" class="cal-form" hidden>
-          <label for="when">Pick a date & time</label>
-          <input id="when" type="datetime-local" />
-          <button class="btn btn--primary" id="createCal">Create</button>
-          <button class="btn btn--ghost" id="cancelCal">Cancel</button>
-          <p class="cal-hint">We’ll prefill Google Calendar with the time, place, and title.</p>
-        </div>
-      </div>
-
-      <!-- Embedded Google Map (responsive) -->
-      <div class="map-wrap" aria-label="Map showing Bleu Bear Sushi">
-        <iframe
-          class="map-embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Bleu+Bear+Sushi+2807+Central+Dr,+Bedford,+TX+76021&output=embed"
-          title="Map of Bleu Bear Sushi"
-        ></iframe>
-      </div>
-
-      <div class="buttons">
+      <div class="buttons" style="position:relative; z-index:2;">
         <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
         <button class="btn btn--ghost" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
       </div>
@@ -73,53 +27,14 @@
       function nextPage() {
         window.location.href = "yes.html";
       }
-
       function moveButton() {
         const btn = document.getElementById("noButton");
         const x = Math.random() * (window.innerWidth - btn.offsetWidth) - 85;
         const y = Math.random() * (window.innerHeight - btn.offsetHeight) - 48;
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
+        btn.style.position = "absolute";
       }
-
-      // Calendar flow (simple, no libraries)
-      const openCal = document.getElementById("openCal");
-      const calForm = document.getElementById("calForm");
-      const cancelCal = document.getElementById("cancelCal");
-      const createCal = document.getElementById("createCal");
-      const whenInput = document.getElementById("when");
-
-      openCal?.addEventListener("click", () => {
-        calForm.hidden = false;
-        whenInput.focus();
-      });
-      cancelCal?.addEventListener("click", () => {
-        calForm.hidden = true;
-      });
-
-      createCal?.addEventListener("click", () => {
-        const whenVal = whenInput.value; // e.g. "2025-09-01T19:00"
-        if (!whenVal) {
-          alert("Pick a date & time first 🙃");
-          return;
-        }
-
-        // Convert local datetime to UTC basic format for Google Calendar
-        const startLocal = new Date(whenVal);
-        const endLocal = new Date(startLocal.getTime() + 2 * 60 * 60 * 1000); // +2h dinner block
-        const toGCal = (d) =>
-          d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z"); // YYYYMMDDTHHMMSSZ
-
-        const startStr = toGCal(startLocal);
-        const endStr = toGCal(endLocal);
-
-        const title = encodeURIComponent("Sushi date at Bleu Bear Sushi 🍣");
-        const location = encodeURIComponent("Bleu Bear Sushi, 2807 Central Dr, Bedford, TX 76021");
-        const details = encodeURIComponent("Yes = you owe me one (kidding). See you there!");
-
-        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}&location=${location}&details=${details}`;
-        window.open(url, "_blank", "noopener,noreferrer");
-      });
     </script>
   </body>
 </html>

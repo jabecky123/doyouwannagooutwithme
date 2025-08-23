@@ -80,3 +80,27 @@ body {
   .header_text { font-size: 28px; }
   .btn { padding: 12px 20px; font-size: 15px; }
 }
+/* --- overrides to keep your GIF big & lovely --- */
+.gif_container img {
+  max-height: 60vh;     /* tall & cute */
+  max-width: 90vw;      /* responsive on small screens */
+  height: auto;
+  width: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* --- make sure No button isn't transparent (same as Yes) --- */
+/* If you previously had .btn--ghost on No, we removed it in HTML.
+   But just in case, this keeps any ghost variant solid pink. */
+.btn--ghost {
+  background-color: #FFB6C1;
+  border: none;
+  color: #fff;
+}
+
+/* If your old CSS set #noButton { position:absolute; margin-left:150px; }
+   this override prevents weird offsets. JS will handle positioning. */
+#noButton {
+  margin: 0;
+}

@@ -19,7 +19,7 @@
 
       <div class="buttons">
         <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-        <button class="btn btn--ghost" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
       </div>
     </div>
 
@@ -27,18 +27,24 @@
       function nextPage() {
         window.location.href = "yes.html";
       }
+
+      // Make "No" run away within the entire viewport so it never gets clipped
       function moveButton() {
         const btn = document.getElementById("noButton");
-        // make sure the "No" button is allowed to move without covering header
-        const area = document.querySelector(".container");
-        area.style.position = "relative";
-        btn.style.position = "absolute";
-        const maxX = area.clientWidth - btn.offsetWidth;
-        const maxY = area.clientHeight - btn.offsetHeight;
-        const x = Math.max(0, Math.random() * maxX);
-        const y = Math.max(0, Math.random() * maxY + 40); // +40 to avoid overlapping the header
-        btn.style.left = `${x}px`;
-        btn.style.top = `${y}px`;
+
+        // make it float relative to the screen, not the container
+        btn.style.position = "fixed";
+        btn.style.zIndex = "9999";
+
+        const PADDING = 20; // keep away from screen edges
+        const maxX = window.innerWidth - btn.offsetWidth - PADDING;
+        const maxY = window.innerHeight - btn.offsetHeight - PADDING;
+
+        const x = Math.floor(Math.random() * (maxX - PADDING)) + PADDING;
+        const y = Math.floor(Math.random() * (maxY - PADDING)) + PADDING;
+
+        btn.style.left = x + "px";
+        btn.style.top  = y + "px";
       }
     </script>
   </body>

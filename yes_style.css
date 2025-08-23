@@ -1,26 +1,18 @@
 /* Layout */
 body {
-  margin: 0;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F8C8DC; /* same pink as home */
-  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #F8C8DC; /* pretty pink background */
+  font-family: 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 .container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-}
-
-.card {
+  width: min(95vw, 900px);
   text-align: center;
-  max-width: 800px;
-  width: 100%;
+  padding: 16px;
 }
 
 /* Header */
@@ -28,7 +20,7 @@ body {
   font-size: 50px;
   font-weight: 800;
   color: white;
-  margin: 0 0 16px;
+  margin: 10px 0 16px;
   text-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
@@ -37,7 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .gif_container img {
   max-width: 360px;
@@ -47,7 +39,7 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
-/* Details */
+/* Details text */
 .details_text {
   font-size: 20px;
   font-weight: 600;
@@ -57,7 +49,7 @@ body {
 
 /* Place card */
 .place-card {
-  margin: 1rem auto;
+  margin: 1rem auto 0;
   padding: 1rem 1.25rem;
   max-width: 560px;
   border: 2px solid #fff;

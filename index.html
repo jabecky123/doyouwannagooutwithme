@@ -13,11 +13,11 @@
       <div class="gif_container" aria-hidden="true">
         <img
           src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif"
-          alt=""
+          alt="cute sushi gif"
         />
       </div>
 
-      <div class="buttons" style="position:relative; z-index:2;">
+      <div class="buttons">
         <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
         <button class="btn btn--ghost" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
       </div>
@@ -29,11 +29,16 @@
       }
       function moveButton() {
         const btn = document.getElementById("noButton");
-        const x = Math.random() * (window.innerWidth - btn.offsetWidth) - 85;
-        const y = Math.random() * (window.innerHeight - btn.offsetHeight) - 48;
+        // make sure the "No" button is allowed to move without covering header
+        const area = document.querySelector(".container");
+        area.style.position = "relative";
+        btn.style.position = "absolute";
+        const maxX = area.clientWidth - btn.offsetWidth;
+        const maxY = area.clientHeight - btn.offsetHeight;
+        const x = Math.max(0, Math.random() * maxX);
+        const y = Math.max(0, Math.random() * maxY + 40); // +40 to avoid overlapping the header
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.position = "absolute";
       }
     </script>
   </body>
